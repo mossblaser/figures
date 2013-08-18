@@ -1,0 +1,66 @@
+\begin{tikzpicture}[thick,scale=0.45]
+	
+	\def\size{10}
+	\def\subsize{0.95}
+	
+	\pgfmathtruncatemacro{\sizee}{\size-1}
+	\pgfmathtruncatemacro{\radius}{0.5*\size}
+	
+	
+	\begin{scope}
+		% Wafer
+		\clip                  (0.5*\size, 0.5*\size) circle (0.5*\subsize*\size);
+		\fill [black!40!white] (0.5*\size, 0.5*\size) circle (0.5*\subsize*\size);
+		
+		% Outline
+		\newcommand{\drawfullchips}[2]{
+			\foreach \x in {0,...,\sizee}{
+				\foreach \y in {0,...,\sizee}{
+					% Bottom left
+					\pgfmathsetmacro{\xx}{\x-(0.5*\size)}
+					\pgfmathsetmacro{\yy}{\y-(0.5*\size)}
+					\pgfmathsetmacro{\blradius}{sqrt((\xx*\xx) + (\yy*\yy))}
+					% Top-right
+					\pgfmathsetmacro{\xx}{(\x+1)-(0.5*\size)}
+					\pgfmathsetmacro{\yy}{(\y+1)-(0.5*\size)}
+					\pgfmathsetmacro{\trradius}{sqrt((\xx*\xx) + (\yy*\yy))}
+					% Bottom-right
+					\pgfmathsetmacro{\xx}{(\x+1)-(0.5*\size)}
+					\pgfmathsetmacro{\yy}{(\y+0)-(0.5*\size)}
+					\pgfmathsetmacro{\brradius}{sqrt((\xx*\xx) + (\yy*\yy))}
+					% Top-left
+					\pgfmathsetmacro{\xx}{(\x+0)-(0.5*\size)}
+					\pgfmathsetmacro{\yy}{(\y+1)-(0.5*\size)}
+					\pgfmathsetmacro{\tlradius}{sqrt((\xx*\xx) + (\yy*\yy))}
+					
+					% Bodge using units to allow float comparisons...
+					\ifthenelse{\lengthtest{\blradius pt < \radius pt}
+					       \AND \lengthtest{\trradius pt < \radius pt}
+					       \AND \lengthtest{\brradius pt < \radius pt}
+					       \AND \lengthtest{\tlradius pt < \radius pt}}{
+						% Draw box
+						\begin{scope}
+							#1 (\x,\y) rectangle ++(1,1) #2
+						\end{scope}
+					}{
+						% Do nothing
+					}
+				}
+			}
+		}
+		
+		% Draw ANC grid on background chips
+		\draw [help lines, xstep=0.25, ystep=0.5] (0,0) grid (\size,\size);
+		
+		% Outline the working chips
+		\drawfullchips{\draw [line width=0.6ex]}{;}
+		\drawfullchips{\fill [fill=black!20!white]}{;}
+		
+		% Draw ANC grid on top of the working chips
+		\drawfullchips{\clip}{;\draw [help lines, xstep=0.25, ystep=0.5] (0,0) grid (\size,\size);}
+		
+		% Chip Grid
+		\draw (0,0) grid (\size,\size);
+	\end{scope}
+	
+\end{tikzpicture}
