@@ -1,0 +1,55 @@
+\begin{tikzpicture}[thick,inner sep=0.1cm,3d/perspective eye={0,10,20}]
+	\def\width{9}
+	\def\height{9}
+	
+	\def\tubewidth{1}
+	\def\holesize{5}
+	
+	\pgfmathtruncatemacro{\widthh}{\width - 1}
+	\pgfmathtruncatemacro{\heightt}{\height - 1}
+	
+	\clip (-0.7,-0.3) rectangle (\widthh+0.7,\heightt+0.7);
+	
+	\foreach \lx in {0,...,\widthh}{
+		\foreach \ly in {0,...,\heightt}{
+			\node [fill,circle]
+			      (node X\lx Y\ly) at (\lx, \ly)
+			      {};
+		}
+	}
+	
+	% Draw normal links
+	\foreach \x in {0,...,\widthh}{
+		\foreach \y in {0,...,\heightt}{
+			\pgfmathtruncatemacro{\xx}{\x + 1}
+			\pgfmathtruncatemacro{\yy}{\y + 1}
+			\ifthenelse{\xx < \width}{
+				\draw (node X\x Y\y.center) -- (node X\xx Y\y.center);
+			}{
+				%\draw (node X\x Y\y.center) -- (node X0Y\y.center);
+			}
+			\ifthenelse{\yy < \height}{
+				\draw (node X\x Y\y.center) -- (node X\x Y\yy.center);
+			}{
+				%\draw (node X\x Y\y.center) -- (node X\x Y0.center);
+			}
+		}
+	}
+	
+	% Draw Long Links
+	\begin{pgfonlayer}{background}
+		\foreach \x in {0,...,\widthh}{
+			\draw [help lines] (node X\x Y0.center)
+			            .. controls +(0.7,-2.0)
+			                    and +(0.7,2.0)
+			            .. (node X\x Y\heightt.center);
+		}
+		\foreach \y in {0,...,\heightt}{
+			\draw [help lines] (node X0Y\y.center)
+			            .. controls +(-2.0,0.7)
+			                    and +(2.0,0.7)
+			            .. (node X\widthh Y\y.center);
+		}
+	\end{pgfonlayer}
+	
+\end{tikzpicture}

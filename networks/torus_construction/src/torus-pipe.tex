@@ -1,0 +1,68 @@
+\begin{tikzpicture}[thick,inner sep=0.1cm,3d/perspective eye={0,10,20}]
+	\def\width{9}
+	\def\height{9}
+	
+	\def\tubewidth{1}
+	\def\holesize{5}
+	
+	\pgfmathtruncatemacro{\widthh}{\width - 1}
+	\pgfmathtruncatemacro{\heightt}{\height - 1}
+	
+	\foreach \lx in {0,...,\widthh}{
+		\foreach \ly in {0,...,\heightt}{
+			\def\x{0};
+			\def\y{\tubewidth};
+			\def\z{0};
+			
+			\pgfmathsetmacro{\rotx}{(\ly*360)/\height}
+			\pgfmathsetmacro{\roty}{(\lx*360)/\width}
+			
+			% Rotate points about x-axis depending on \ly to roll into a tube
+			\pgfmathsetmacro{\xx}{\x}
+			\pgfmathsetmacro{\yy}{\y*cos(\rotx) - \z*sin(\rotx)}
+			\pgfmathsetmacro{\zz}{\y*sin(\rotx) + \z*cos(\rotx)}
+			
+			% Shift points along x-axis to make a tube
+			\pgfmathsetmacro{\xxx}{\lx - (\width / 2)}
+			\pgfmathsetmacro{\yyy}{\yy}
+			\pgfmathsetmacro{\zzz}{\zz}
+			
+			\node [fill,circle]
+			      (node X\lx Y\ly) at (3d cs:\xxx, \yyy, \zzz)
+			      {};
+		}
+	}
+	
+	% Draw normal links
+	\foreach \x in {0,...,\widthh}{
+		\foreach \y in {0,...,\heightt}{
+			\pgfmathtruncatemacro{\xx}{\x + 1}
+			\pgfmathtruncatemacro{\yy}{\y + 1}
+			\ifthenelse{\xx < \width}{
+				\draw (node X\x Y\y.center) -- (node X\xx Y\y.center);
+			}{
+				%\draw (node X\x Y\y.center) -- (node X0Y\y.center);
+			}
+			\ifthenelse{\yy < \height}{
+				\draw (node X\x Y\y.center) -- (node X\x Y\yy.center);
+			}{
+				\draw (node X\x Y\y.center) -- (node X\x Y0.center);
+			}
+		}
+	}
+	
+	% Draw Long Links
+	%\foreach \x in {0,...,\widthh}{
+	%	\draw [red] (node X\x Y0.center)
+	%	            .. controls +(0.5,-1.0)
+	%	                    and +(0.5,1.0)
+	%	            .. (node X\x Y\heightt.center);
+	%}
+	%\foreach \y in {0,...,\heightt}{
+	%	\draw [red] (node X0Y\y.center)
+	%	            .. controls +(-1.0,0.5)
+	%	                    and +(1.0,0.5)
+	%	            .. (node X\widthh Y\y.center);
+	%}
+	
+\end{tikzpicture}
