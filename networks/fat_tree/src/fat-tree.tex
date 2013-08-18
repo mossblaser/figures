@@ -1,0 +1,32 @@
+\begin{tikzpicture}[thick, node distance=1em]
+	
+	\begin{scope}[every node/.style={draw,rectangle,thick},inner sep=1.0em]
+		\tikzstyle{level 1}=[sibling distance=6cm,every child/.style  ={line width=4pt},inner sep=0.8em]
+		\tikzstyle{level 2}=[sibling distance=3cm,every child/.style  ={line width=2pt},inner sep=0.5em]
+		\tikzstyle{level 3}=[sibling distance=1.5cm,every child/.style={line width=1pt},inner sep=0.1em]
+		
+		\node {Switch}
+			child {node {Switch}
+				child {node {Switch}
+					child {node [circle] {Node}}
+					child {node [circle] {Node}}
+				}
+				child {node {Switch}
+					child {node [circle] {Node}}
+					child {node [circle] {Node}}
+				}
+			}
+			child {node {Switch}
+				child {node {Switch}
+					child {node [circle] {Node}}
+					child {node [circle] {Node}}
+				}
+				child {node {Switch}
+					child {node [circle] {Node}}
+					child {node [circle] {Node}}
+				}
+			}
+		;
+	\end{scope}
+	
+\end{tikzpicture}
