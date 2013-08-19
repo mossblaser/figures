@@ -1,0 +1,41 @@
+\begin{tikzpicture}
+	
+	\clip (1cm,1.25cm) rectangle +(7cm,5.25cm);
+	
+	\begin{scope}[hexagonXYZ,minimum size=0.25cm,inner sep=0]
+		\foreach \y in {1,...,8}{
+			\foreach \x in {1,...,16}{
+				\node (chip \x \y) at (\x,\y) [fill,circle] {};
+			}
+		}
+	\end{scope}
+	
+	\foreach \y in {2,...,7}{
+		\foreach \x in {2,...,15}{
+			\pgfmathtruncatemacro{\xx}{\x+1}
+			\pgfmathtruncatemacro{\yy}{\y+1}
+			\draw (chip \x \y) -- (chip \xx \yy);
+			
+			\pgfmathtruncatemacro{\xx}{\x-1}
+			\pgfmathtruncatemacro{\yy}{\y-1}
+			\draw (chip \x \y) -- (chip \xx \yy);
+			
+			\pgfmathtruncatemacro{\xx}{\x+1}
+			\pgfmathtruncatemacro{\yy}{\y+0}
+			\draw (chip \x \y) -- (chip \xx \yy);
+			
+			\pgfmathtruncatemacro{\xx}{\x-1}
+			\pgfmathtruncatemacro{\yy}{\y+0}
+			\draw (chip \x \y) -- (chip \xx \yy);
+			
+			\pgfmathtruncatemacro{\xx}{\x+0}
+			\pgfmathtruncatemacro{\yy}{\y+1}
+			\draw (chip \x \y) -- (chip \xx \yy);
+			
+			\pgfmathtruncatemacro{\xx}{\x+0}
+			\pgfmathtruncatemacro{\yy}{\y-1}
+			\draw (chip \x \y) -- (chip \xx \yy);
+		}
+	}
+	
+\end{tikzpicture}
