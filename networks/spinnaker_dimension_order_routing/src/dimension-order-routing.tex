@@ -1,0 +1,60 @@
+\begin{tikzpicture}[inner sep=0]
+	
+	\begin{scope}[shift={(-2.0cm,3cm)},hexagonXYZ,thick]
+		
+		\draw [->] (0,0,0) -- (1,0,0) node [shift={(0.2,0.0,0.0)}] {$x$};
+		\draw [->] (0,0,0) -- (0,1,0) node [shift={(0.0,0.2,0.0)}] {$y$};
+		\draw [->] (0,0,0) -- (0,0,1) node [shift={(0.0,0.0,0.2)}] {$z$};
+		
+	\end{scope}
+	
+	\begin{scope}
+		\clip (0cm,1.25cm) rectangle +(8cm,3.5cm);
+		
+		\begin{scope}[hexagonXYZ,minimum size=0.25cm]
+			\foreach \y in {0,...,8}{
+				\foreach \x in {0,...,16}{
+					\node (chip \x \y) at (\x,\y) [fill,circle] {};
+				}
+			}
+		\end{scope}
+		
+		\begin{scope}
+			\foreach \y in {1,...,7}{
+				\foreach \x in {1,...,15}{
+					\pgfmathtruncatemacro{\xx}{\x+1}
+					\pgfmathtruncatemacro{\yy}{\y+1}
+					\draw (chip \x \y) -- (chip \xx \yy);
+					
+					\pgfmathtruncatemacro{\xx}{\x-1}
+					\pgfmathtruncatemacro{\yy}{\y-1}
+					\draw (chip \x \y) -- (chip \xx \yy);
+					
+					\pgfmathtruncatemacro{\xx}{\x+1}
+					\pgfmathtruncatemacro{\yy}{\y+0}
+					\draw (chip \x \y) -- (chip \xx \yy);
+					
+					\pgfmathtruncatemacro{\xx}{\x-1}
+					\pgfmathtruncatemacro{\yy}{\y+0}
+					\draw (chip \x \y) -- (chip \xx \yy);
+					
+					\pgfmathtruncatemacro{\xx}{\x+0}
+					\pgfmathtruncatemacro{\yy}{\y+1}
+					\draw (chip \x \y) -- (chip \xx \yy);
+					
+					\pgfmathtruncatemacro{\xx}{\x+0}
+					\pgfmathtruncatemacro{\yy}{\y-1}
+					\draw (chip \x \y) -- (chip \xx \yy);
+				}
+			}
+		\end{scope}
+	\end{scope}
+	
+	\node [left=0.5ex of chip 22] {\contour{white}{$S$}};
+	\node [right=0.5ex of chip 95] {\contour{white}{$T$}};
+	
+	\draw [black,line width=3pt] (chip 22.center) -- (chip 62.center);
+	\draw [black,line width=3pt] (chip 62.center) -- (chip 95.center);
+	
+\end{tikzpicture}
+
