@@ -1,8 +1,7 @@
+img:file://networks/torus_construction/torus_3d.png
+
 Assorted Figures
 ================
-
-Note: A more plesant browsing experience for this repository can be found [on my
-website](http://jhnet.co.uk/projects/figures).
 
 This repository contains an informal library of figures created in various ways
 and for various purposes which may be of use to others. These figures are
@@ -13,6 +12,8 @@ machine generated SVG or TikZ source).
 Though the figures are intended to be aesthetically pleasing, their descriptions
 are often not. Please be aware of this if you are considering adapting a figure!
 
+Note: A more plesant browsing experience for this repository can be found [on my
+website](http://jhnet.co.uk/projects/figures).
 
 LaTeX Preamble
 --------------
