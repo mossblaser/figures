@@ -1,0 +1,17 @@
+\newcommand{\mayberandompath}[2]{
+	\pgfmathsetmacro{\choice}{random(5)}
+	\pgfmathsetmacro{\myrand}{random(12)*30}
+	\ifthenelse{\equal{\choice}{1.0}}{
+		\draw (#1:2) -- (#2+\myrand:2);
+	}{
+		\draw (#1:2) -- (#2:2);
+	}
+}
+
+\begin{tikzpicture}[thick,inner sep=0.1cm]
+	\foreach \t in {30,60,...,360}{
+		\node [fill,circle] at (\t:2) {};
+		\mayberandompath{\t}{\t+30}
+		\mayberandompath{\t}{\t+60}
+	}
+\end{tikzpicture}

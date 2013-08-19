@@ -1,0 +1,8 @@
+\begin{tikzpicture}[thick,inner sep=0.1cm]
+	\foreach \t in {30,60,...,360}{
+		\node [fill,circle] at (\t:2) {};
+		\draw (\t:2) -- (\t+30:2);
+		\draw (\t:2) -- (\t+60:2);
+	}
+\end{tikzpicture}
+

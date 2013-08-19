@@ -1,4 +1,5 @@
 subtitle: For Illustration Purposes Only
+img:file://neural_network.png
 tags: Neuroscience
       Python
 
