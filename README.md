@@ -11,3 +11,40 @@ Though the figures are intended to be aesthetically pleasing, their descriptions
 are often not. Please be aware of this if you are considering adapting a figure!
 
 
+LaTeX Preamble
+--------------
+
+LaTeX/TikZ figures assume that the following is in the preamble:
+
+	::latex
+	\usepackage{amsmath}
+	\usepackage{amssymb}
+	
+	\usepackage{graphicx}
+	
+	\usepackage{ifthen}
+	
+	\usepackage[outline]{contour}
+	\contourlength{1.5pt}
+	
+	\usepackage{tikz}
+	\usepackage{tikz3d}
+	\usetikzlibrary{ hexagon
+	               , calc
+	               , backgrounds
+	               , positioning
+	               , decorations.pathreplacing
+	               , decorations.markings
+	               , arrows
+	               , positioning
+	               , automata
+	               , shadows
+	               , fit
+	               , shapes
+	               , arrows
+	               }
+
+Which notably relies on the non-standard [hexagon
+library](https://github.com/mossblaser/tikz-hexagon) and TikZ3D (part of
+[Tex-SX](http://bazaar.launchpad.net/~tex-sx/tex-sx/development/files))
+libraries.
