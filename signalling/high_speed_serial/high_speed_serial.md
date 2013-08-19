@@ -1,4 +1,4 @@
-tags: High Speed Serial
+tags: Signalling
       Python
 
 High Speed Serial Signals
