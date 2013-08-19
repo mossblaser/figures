@@ -1,0 +1,51 @@
+\begin{tikzpicture}[thick]
+	
+	\newcommand{\rootarb}[3]{
+		\node (#1)
+			[draw,minimum height=#2] #3
+			{
+				\tikz[minimum height=0cm]
+					\node[rotate=90]{RR};
+			};
+	}
+	
+	\newcommand{\arb}[4]{
+		\rootarb{#1}{#2}{[left=0.5 of $(#4.north west) !#3! (#4.south west)$]}
+		\draw [->] (#1) to (#4);
+	}
+	
+	\rootarb{root arb}{4cm}{}
+	
+	\arb{nsew arb}{ 2.0cm}{0.1}{root arb}
+	\arb{neswc arb}{2.0cm}{0.9}{root arb}
+	
+	\arb{ns arb}{  1cm}{0.1}{nsew arb}
+	\arb{ew arb}{  1cm}{0.9}{nsew arb}
+	\arb{nesw arb}{1cm}{0.1}{neswc arb}
+	\arb{core arb}{1cm}{0.9}{neswc arb}
+	
+	\newcommand{\inputline}[3]{
+		\draw [<-]
+		      ($(#2.north west) !#1! (#2.south west)$) -- ++(-0.5,0)
+		      node [left] {#3}
+		      ;
+	}
+	\inputline{0.25}{ns arb}{N}
+	\inputline{0.75}{ns arb}{S}
+	
+	\inputline{0.25}{ew arb}{E}
+	\inputline{0.75}{ew arb}{W}
+	
+	\inputline{0.25}{nesw arb}{NW}
+	\inputline{0.75}{nesw arb}{SE}
+	
+	\inputline{0.25}{core arb}{P1}
+	\inputline{0.50}{core arb}{\ldots}
+	\inputline{0.75}{core arb}{P18}
+	
+	\draw [->]
+	      ($(root arb.north east) !0.5! (root arb.south east)$) -- ++(0.5,0)
+	      node [right] {Router}
+	      ;
+	
+\end{tikzpicture}
