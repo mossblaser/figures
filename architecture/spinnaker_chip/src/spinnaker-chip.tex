@@ -1,0 +1,63 @@
+\begin{tikzpicture}[thick]
+	
+	\def\numcores{18}
+	
+	% Draw the cores
+	\coordinate (core last);
+	\foreach \n in {1,...,\numcores}{
+		\pgfmathtruncatemacro{\nn}{\n-1}
+		\node (core \n) [draw,rounded rectangle,minimum width=1.3cm]
+		      [below=0 of core last,anchor=north west,rotate=90,inner sep=0.4ex]
+		      [yshift=-0.1em]
+		      {\tiny CPU \nn}
+		      ;
+		\draw (core \n.west) -- ++(0,-1.5);
+		\coordinate (core last) at (core \n.south west);
+	}
+	
+	% Draw the NoC cloud
+	\node [cloud,draw,fill=white,cloud puffs=20,minimum width = 4cm]
+	      [anchor=north,inner ysep=0.5ex,cloud ignores aspect]
+	      at ([yshift=-1em]$(core 1.west)!0.5!(core 18.west)$)
+	      (comms noc)
+	      {Network on Chip (NoC)};
+	
+	% Draw the router
+	\node [below=1em of comms noc]
+	      [draw, rectangle, minimum width=3cm,minimum height=1.5cm]
+	      (router)
+	      {Router};
+	
+	
+	% Input from NoC
+	\draw [->] (comms noc.south west)
+	           |- ($(router.north west)!0.15!(router.south west)$);
+	
+	% Output to NoC
+	\draw [->] ($(router.north east)!0.15!(router.south east)$)
+	           -| (comms noc.south east);
+	
+	% Draw inputs/outputs
+	\foreach \n in {0,...,5}{
+		\pgfmathsetmacro{\yperc}{0.30 + ((\n+1)/12)}
+		% Inputs
+		\draw [<-]
+		      ($(router.north west)!\yperc!(router.south west)$)
+		      -- ++(-2.2cm,0);
+		% Outputs
+		\draw [->]
+		      ($(router.north east)!\yperc!(router.south east)$)
+		      -- ++(2.2cm,0);
+	}
+	
+	% Draw around the chip
+	\newcommand*{\extractCoordinate}[3]{\path (#1); \pgfgetlastxy{#2}{#3};}
+	\extractCoordinate{router.south}{\routerX}{\routerY}
+	\extractCoordinate{core 1.north east}{\topLeftX}{\topLeftY}
+	\extractCoordinate{core 18.south east}{\topRightX}{\topRightY}
+	\draw [thin]
+	      ([shift={(-1.5ex,2.0ex)}]\topLeftX,\topRightY)
+	      rectangle
+	      ([shift={(1.5ex,-1.5ex)}]\topRightX, \routerY);
+	
+\end{tikzpicture}
