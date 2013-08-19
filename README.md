@@ -1,6 +1,9 @@
 Assorted Figures
 ================
 
+Note: A more plesant browsing experience for this repository can be found [on my
+website](http://jhnet.co.uk/projects/figures).
+
 This repository contains an informal library of figures created in various ways
 and for various purposes which may be of use to others. These figures are
 typically described in [TikZ](http://en.wikipedia.org/wiki/PGF/TikZ),
