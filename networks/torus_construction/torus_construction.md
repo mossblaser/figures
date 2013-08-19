@@ -14,10 +14,6 @@ conventional 2D form (with wrap-around links) and turning it into a torus.
 Usage
 -----
 
-\begin{latex}[<preamble>]
-	\usepackage{tikz3d}
-\end{latex}
-
 	::latex
 	\input{torus-flat}
 
@@ -39,6 +35,4 @@ Usage
 	\input{src/torus-3D}
 \end{latex}
 
-Some configuration is available at the top of each file. Requires Tikz3D (Part
-of [Tex-SX](http://bazaar.launchpad.net/~tex-sx/tex-sx/development/files)) to
-compile.
+Some configuration is available at the top of each file.
