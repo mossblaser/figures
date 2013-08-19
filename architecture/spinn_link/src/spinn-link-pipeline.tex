@@ -1,0 +1,68 @@
+\begin{tikzpicture}[thick,minimum height=2em,node distance=1em]
+
+	\node (chip a)
+		[draw,minimum size=1.8cm]
+		{Chip};
+	\node (fpga a)
+		[matrix, draw, right=2em of chip a, inner sep = 1ex]
+		{
+				\node (in buf)
+					[draw]
+					{Buffer};
+				\node (packet asm)
+					[draw, right=of in buf]
+					{Frame Assembly};
+				\node (transceiver a)
+					[draw, right=of packet asm]
+					{Transmit Buffer};
+				\draw [->] (in buf) to (packet asm);
+				\draw [->] (packet asm) to (transceiver a);
+				\\
+		};
+	
+	\node [above=0 of fpga a] {FPGA};
+	
+	\draw [->] (chip a) to (in buf);
+	
+	\node (chip b)
+		[draw,minimum size=1.8cm,below=2.5em of chip a]
+		{Chip};
+	
+	\node (fpga b)
+		[matrix, draw, right=2em of chip b, inner sep = 1ex]
+		{
+				\node (in buf)
+					[draw]
+					{Buffer};
+				\node (packet asm)
+					[draw, right=of in buf]
+					{Frame Disassembly};
+				\node (transceiver b)
+					[draw, right=of packet asm]
+					{Receive Buffer};
+				\draw [<-] (in buf) to (packet asm);
+				\draw [<-] (packet asm) to (transceiver b);
+				\\
+		};
+	
+	\node [above=0 of fpga b] {FPGA};
+	
+	\draw [<-] (chip b) to (in buf);
+	
+	\draw [->] (transceiver a.east) -- +(1cm,0)
+	      |- (transceiver b.east);
+	
+	\node (label a)
+		[left=of chip a]
+		{Board A};
+	
+	\node (label b)
+		[left=of chip b]
+		{Board B};
+	
+	\draw [help lines]
+	      ([xshift=-0.5em]$(label a.west)!0.5!(label b.west)$)
+	   -- ([xshift=2.5em]$(fpga a.east)!0.5!(fpga b.east)$)
+	      ;
+
+\end{tikzpicture}
