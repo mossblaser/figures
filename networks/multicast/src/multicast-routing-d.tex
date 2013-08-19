@@ -1,0 +1,19 @@
+\begin{tikzpicture}[inner sep=0]
+	
+	\input{src/multicast-routing}
+	
+	\node [left=0.5ex of chip 32] {\contour{white}{$S$}};
+	\node [right=0.5ex of chip 35] {\contour{white}{$T_1$}};
+	\node [right=0.5ex of chip 44] {\contour{white}{$T_2$}};
+	
+	\draw [black,line width=3pt]
+	      (chip 33.center)
+	   -- (chip 44.center)
+	      ;
+	
+	\draw [black,line width=3pt]
+	      (chip 32.center)
+	   -- (chip 35.center)
+	      ;
+\end{tikzpicture}
+
