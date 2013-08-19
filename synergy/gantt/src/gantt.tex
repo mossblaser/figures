@@ -1,0 +1,123 @@
+\begin{tikzpicture}[thick,x=0.25cm]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Hacked-up Gantt Library
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% An entry in the Gantt chart. Takes a label, start offset, length and slack.
+% Also defines a pair of labels "[label] start" and "[label] end" which can be
+% used for drawing dependency lines.
+\newcommand{\ganttEntry}[4]{
+	% Label
+	\node (label)
+				[below=1.5ex of label.south east,anchor=east,minimum height=1.7em]
+				{#1}
+				;
+	\coordinate (gantt labels end) at (label.south east);
+	
+	% Box
+	\draw ([shift={(#2   ,-.9ex)}]label.north east) rectangle
+	      ([shift={(#2+#3,0.9ex)}]label.south east);
+	
+	% The tips of the box
+	\coordinate (#1 end)
+	         at ([shift={(#2+#3,0.9ex)}]label.south east);
+	\coordinate (#1 start)
+	         at ([shift={(#2   ,-.9ex)}]label.north east);
+	
+	% Slack line
+	\draw [ultra thick]
+	      ([shift={(#2+#3,0)}]$(label.north east)!0.5!(label.south east)$)
+	   -- ++(#4,0);
+}
+
+\newcommand{\ganttDep}[2]{
+	\draw [->,red] (#1 end) -| (#2 start);
+}
+
+\newcommand{\ganttVSep}[2]{
+	\draw [#2] ([shift={(#1,0)}]gantt labels start) -- ([shift={(#1,0)}]gantt labels end);
+}
+
+% A new gantt chart. Takes a list of x-offset/label/major-label tuples. For each
+% tuple a line is created with x-offset from the previous line and the span is
+% labelled with "label". If major-label given, a major label will be drawn
+% centered over the previous entries up until the last major-label.
+\newenvironment{gantt}[1]{
+	% Start the list of labels
+	\node (label) [white] {Ag};
+	\coordinate (gantt labels start) at (label.north east);
+	\def\periods{#1}
+}{
+	\begin{scope}[on background layer]
+		% Thick line separating from labels
+		\draw (gantt labels start) -- (gantt labels end);
+		
+		% Start of the area covered by a "major" label
+		\coordinate (gantt maj label start) at (gantt labels start);
+		
+		\foreach \x/\lab/\mlab in \periods {
+			\coordinate (next gantt labels start) at ([shift={(\x,0)}]gantt labels start);
+			\coordinate (next gantt labels end)   at ([shift={(\x,0)}]gantt labels end);
+			
+			% Minor label
+			\node at ($(gantt labels start) !0.5! (next gantt labels start)$)
+			      [anchor=west,rotate=90]
+			      {\lab}
+			      ;
+			
+			% Separator
+			\ifthenelse{\equal{\mlab}{}}{
+				\draw [help lines] (next gantt labels start) -- (next gantt labels end);
+			}{
+				\draw [help lines,thick] (next gantt labels start) -- (next gantt labels end);
+			}
+			
+			\coordinate (gantt labels start) at (next gantt labels start);
+			\coordinate (gantt labels end)   at (next gantt labels end);
+			
+			% Major label
+			\ifthenelse{\equal{\mlab}{}}{}{
+				\coordinate (next gantt maj label start) at (gantt labels start);
+				\node at ($(gantt maj label start) !0.5! (next gantt maj label start)$)
+				      [yshift=1cm,anchor=south]
+				      {\mlab}
+				      ;
+				\coordinate (gantt maj label start) at (next gantt maj label start);
+			}
+		}
+	\end{scope}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The Chart...
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{gantt}{
+	4/Aug/, 4/Sep/, 4/Oct/, 4/Nov/, 4/Dec/2013,%
+	2/Q1/, 2/Q2/, 2/Q3/, 2/Q4/2014,%
+	2/Q1/, 2/Q2/, 2/Q3/, 2/Q4/2015,%
+	2/Q1/, 2/Q2/2016%
+}
+	\ganttEntry{SpiNNaker Modelling}          {0}{5}{3}
+	\ganttEntry{Small-World SpiNNaker}        {5}{4}{1}
+	\ganttEntry{Topology Comparison}          {8}{8}{4}
+	\ganttEntry{Place and Routeability}       {16}{4}{0.5}
+	\ganttEntry{Multicast Simulation}         {20}{1}{0.5}
+	\ganttEntry{Interconnect Evaluation}      {21}{1}{0.5}
+	\ganttEntry{Architecture Design}          {22}{6}{4}
+	\ganttEntry{Architecture Evaluation}      {26}{4}{2}
+	\ganttEntry{Thesis Writing}               {30}{8}{2}
+	
+	\ganttDep{SpiNNaker Modelling}{Small-World SpiNNaker};
+	\ganttDep{SpiNNaker Modelling}{Topology Comparison};
+	\ganttDep{SpiNNaker Modelling}{Place and Routeability};
+	
+	\ganttDep{Place and Routeability}{Multicast Simulation};
+	
+	\ganttDep{Place and Routeability}{Architecture Design};
+\end{gantt}
+
+\end{tikzpicture}
