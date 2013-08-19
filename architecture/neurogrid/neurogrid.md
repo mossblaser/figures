@@ -1,13 +1,14 @@
+img:file://neurogrid.png
 tags: Architecture
       TikZ
 
 Neurogrid Output Arbitration
 ============================
 
-[Download `neurogrid.tex`](file://src/neurogrid.tex)
-
 [Neurogrid](http://www.stanford.edu/group/brainsinsilicon/neurogrid.html) chip
 topology showing the mechanism used to arbitrate the chip's shared output port.
+
+[Download `neurogrid.tex`](file://src/neurogrid.tex)
 
 Usage
 -----

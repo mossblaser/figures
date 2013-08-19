@@ -1,10 +1,9 @@
+img:file://gantt_chart.png
 tags: Synergy
       TikZ
 
 TikZ Gantt Chart
 ================
-
-[Download `gantt.tex`](file://src/gantt.tex)
 
 A [Gantt chart](http://en.wikipedia.org/wiki/Gantt_chart) in TikZ, sort-of
 written as a library (see bottom of file for the definition of the shown Gantt
@@ -14,6 +13,8 @@ chart). Has the following features:
 * Dependencies
 * Slack
 * Super-High Box-Ticking Synergizing Powers
+
+[Download `gantt.tex`](file://src/gantt.tex)
 
 Usage
 -----

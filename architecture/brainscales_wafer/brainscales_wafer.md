@@ -1,13 +1,14 @@
+img:file://brainscales_wafer.png
 tags: Architecture
       TikZ
 
 BrainScaleS Wafer
 =================
 
-[Download `brainscales-wafer.tex`](file://src/brainscales-wafer.tex)
-
 An illustration of what the [BrainScaleS](brainscales.kip.uni-heidelberg.de)
 wafer kind-of-sort-of looks like.
+
+[Download `brainscales-wafer.tex`](file://src/brainscales-wafer.tex)
 
 Usage
 -----

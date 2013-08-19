@@ -1,16 +1,17 @@
+img:file://differential_signalling.png
 tags: Signalling
       Python
 
 High Speed Serial Signals
 =========================
 
-* [Download `serial_comms.py`](file://src/serial_comms.py)
-* [Download `eightbtenb.py`](file://src/eightbtenb.py)
-
 A (horrific) script which generates examples of serial signals with options to
 distort and encode the messages. Relies on `eightbtenb.py`, an equally horrific
 and known incorrect 8b10b encoder/decoder implementation (good enough for
 figures...).
+
+* [Download `serial_comms.py`](file://src/serial_comms.py)
+* [Download `eightbtenb.py`](file://src/eightbtenb.py)
 
 Usage
 -----

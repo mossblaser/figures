@@ -1,13 +1,14 @@
+img:file://spinnaker_arbiter_tree.png
 tags: Architecture
       TikZ
 
 SpiNNaker Arbiter Tree
 ======================
 
-[Download `arbiters.tex`](file://src/arbiters.tex)
-
 Shows the arbiter tree in
 [SpiNNaker](http://apt.cs.man.ac.uk/projects/SpiNNaker/).
+
+[Download `arbiters.tex`](file://src/arbiters.tex)
 
 Usage
 -----

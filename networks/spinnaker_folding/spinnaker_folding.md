@@ -1,13 +1,10 @@
+img:file://step_three_in_folding_the_boards.png
 tags: Networks
       SpiNNer
       Python
 
 SpiNNaker Network Folding
 =========================
-
-* [Download `boardsFoldedShift.py`](file://src/boardsFoldedShift.py)
-* [Download `boardsFoldedSpaced.py`](file://src/boardsFoldedSpaced.py)
-* [Download `boardsFoldedInterleaved.py`](file://src/boardsFoldedInterleaved.py)
 
 Shows the steps to fold a network of $4\times4$ threeboards in
 [SpiNNaker](http://apt.cs.man.ac.uk/projects/SpiNNaker/). Red, Green and Blue
@@ -17,6 +14,10 @@ implicitly connected.
 Uses the [SpiNNer](https://github.com/mossblaser/SpiNNer) library which must be
 present in `/home/jonathan/Programing/Python/SpiNNer`. (Sorry...)
 
+* [Download `boardsFoldedShift.py`](file://src/boardsFoldedShift.py)
+* [Download `boardsFoldedSpaced.py`](file://src/boardsFoldedSpaced.py)
+* [Download `boardsFoldedInterleaved.py`](file://src/boardsFoldedInterleaved.py)
+
 Usage
 -----
 
@@ -25,7 +26,7 @@ Usage
 	::latex
 	\input{|"python boardsFoldedShift.py"}
 
-\begin{latex}[--pdf Step one in folding the boards.]
+\begin{latex}[--pdf Step one in folding the boards]
 	\input{|"python src/boardsFoldedShift.py"}
 \end{latex}
 
@@ -34,7 +35,7 @@ Usage
 	::latex
 	\input{|"python boardsFoldedSpaced.py"}
 
-\begin{latex}[--pdf Step two in folding the boards.]
+\begin{latex}[--pdf Step two in folding the boards]
 	\input{|"python src/boardsFoldedSpaced.py"}
 \end{latex}
 
@@ -43,7 +44,7 @@ Usage
 	::latex
 	\input{|"python boardsFoldedInterleaved.py"}
 
-\begin{latex}[--pdf Step three in folding the boards.]
+\begin{latex}[--pdf Step three in folding the boards]
 	\input{|"python src/boardsFoldedInterleaved.py"}
 \end{latex}
 

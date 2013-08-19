@@ -1,16 +1,17 @@
+img:file://dimension_order_routing.png
 tags: Networks
       TikZ
 
 SpiNNaker Dimension Order Routing
 =================================
 
-[Download `dimension-order-routing.tex`](file://src/dimension-order-routing.tex)
-
 An illustration of dimension order routing between two points in the
 [SpiNNaker](http://apt.cs.man.ac.uk/projects/SpiNNaker/) network including a set
 of unit vectors. This version is drawn with all edges of equal distance rather
 than the misleading projection often used with a normal 2D mesh augmented with
 diagonal links.
+
+[Download `dimension-order-routing.tex`](file://src/dimension-order-routing.tex)
 
 Usage
 -----

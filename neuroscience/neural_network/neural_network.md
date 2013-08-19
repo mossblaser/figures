@@ -6,11 +6,11 @@ tags: Neuroscience
 Neural Network
 ==============
 
-[Download `ann-example.py`](file://src/ann-example.py)
-
 An illustrative example of a neural network. Mostly illustrates that it is a
 graph and can highlight a single neuron and its links which is handy while
 talking about fan-out.
+
+[Download `ann-example.py`](file://src/ann-example.py)
 
 Usage
 -----
