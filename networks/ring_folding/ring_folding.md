@@ -1,14 +1,15 @@
+img:file://interleaved_ring.png
 tags: Networks
       TikZ
 
 Ring Network Folding
 ====================
 
-* [Download `ringLong.py`](file://src/ringLong.py)
-* [Download `ringFolded.py`](file://src/ringFolded.py)
-* [Download `ringInterleaved.py`](file://src/ringInterleaved.py)
-
 Shows the steps to fold a ring network.
+
+* [Download `ringLong.tex`](file://src/ringLong.tex)
+* [Download `ringFolded.tex`](file://src/ringFolded.tex)
+* [Download `ringInterleaved.tex`](file://src/ringInterleaved.tex)
 
 Usage
 -----
