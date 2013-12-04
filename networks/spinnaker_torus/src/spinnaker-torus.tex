@@ -1,0 +1,26 @@
+% A TikZ diagram showing a 12x12 system of SpiNNaker chips.
+
+\begin{tikzpicture}[scale=0.5]
+	\def\width{12}
+	\def\height{12}
+	\begin{scope}[hexagonXYZ,minimum size=0.20cm,inner sep=0]
+		% Wires (drawn first to make sure they're in the background)
+		\foreach \y in {1,...,\height}{
+			\foreach \x in {1,...,\width}{
+				\draw (\x,\y) -- (\x+0.5,\y+0.0);
+				\draw (\x,\y) -- (\x+0.5,\y+0.5);
+				\draw (\x,\y) -- (\x+0.0,\y+0.5);
+				\draw (\x,\y) -- (\x-0.5,\y+0.0);
+				\draw (\x,\y) -- (\x-0.5,\y-0.5);
+				\draw (\x,\y) -- (\x+0.0,\y-0.5);
+			}
+		}
+		
+		% Nodes
+		\foreach \y in {1,...,\height}{
+			\foreach \x in {1,...,\width}{
+				\node (chip \x \y) at (\x,\y) [draw,circle,fill=white] {};
+			}
+		}
+	\end{scope}
+\end{tikzpicture}
