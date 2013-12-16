@@ -177,21 +177,26 @@
 	
 	\def\pindist{1.0cm}
 	
+	% XXX: Note that the text here differs from the labelling used internally.
+	% This is due to the fact that the original assignment was discovered to be
+	% erroneuous and just correcting the text was easier than replacing
+	% everything.
+	
 	% Input pins
-	\draw (e  buf in) -- ++(-\pindist,0) node [left] {E};
-	\draw (ne buf in) -- ++(-\pindist,0) node [left] {NE};
-	\draw (n  buf in) -- ++(-\pindist,0) node [left] {N};
-	\draw (w  buf in) -- ++(-\pindist,0) node [left] {W};
-	\draw (sw buf in) -- ++(-\pindist,0) node [left] {SW};
-	\draw (s  buf in) -- ++(-\pindist,0) node [left] {S};
+	\draw (e  buf in) -- ++(-\pindist,0) node [left] {W};
+	\draw (ne buf in) -- ++(-\pindist,0) node [left] {S};
+	\draw (n  buf in) -- ++(-\pindist,0) node [left] {NE};
+	\draw (w  buf in) -- ++(-\pindist,0) node [left] {N};
+	\draw (sw buf in) -- ++(-\pindist,0) node [left] {W};
+	\draw (s  buf in) -- ++(-\pindist,0) node [left] {SW};
 	
 	% Output pins
-	\draw (e  out buf out) -- ++(\pindist,0) node [right] {E};
-	\draw (ne out buf out) -- ++(\pindist,0) node [right] {NE};
-	\draw (n  out buf out) -- ++(\pindist,0) node [right] {N};
-	\draw (w  out buf out) -- ++(\pindist,0) node [right] {W};
-	\draw (sw out buf out) -- ++(\pindist,0) node [right] {SW};
-	\draw (s  out buf out) -- ++(\pindist,0) node [right] {S};
+	\draw (e  out buf out) -- ++(\pindist,0) node [right] {W};
+	\draw (ne out buf out) -- ++(\pindist,0) node [right] {S};
+	\draw (n  out buf out) -- ++(\pindist,0) node [right] {NE};
+	\draw (w  out buf out) -- ++(\pindist,0) node [right] {N};
+	\draw (sw out buf out) -- ++(\pindist,0) node [right] {W};
+	\draw (s  out buf out) -- ++(\pindist,0) node [right] {SW};
 	
 \end{tikzpicture}
 
